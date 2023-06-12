@@ -15,7 +15,7 @@
 }
 .containerAlbumImg {
   width: 40vw;
-  height: 100vh;
+  height: 90vh;
   justify-content: center;
   box-shadow: 5px 2px 3px black;
   border: solid 1px black;
@@ -25,6 +25,13 @@
     oklch(44% 0.03 204) 0%,
     oklch(32% 0.03 244) 100%
   );
+}
+.showSongs {
+  color: white;
+  background-color: transparent;
+  border-radius: 5px;
+  margin: 10px 40%;
+
 }
 .albumImg {
   margin: 10px 20%;
@@ -37,35 +44,11 @@
   margin: 10px 20%;
   text-align: center;
 }
-.controller {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 0;
-}
-.button {
-  margin: 0 10px;
-  padding: 3px;
-  width: 80px;
-  height: 80px;
-  fill: white;
-  filter: drop-shadow(0 0 0.9rem black);
-}
-.button-play {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px;
-  border-radius: 50%;
-  padding: 3px;
-  width: 80px;
-  height: 80px;
-  background-color: black;
-  fill: white;
-}
+
+
 .playlistContainer {
   width: 60vw;
-  height: 100vh;
+  height: 90vh;
   overflow: auto;
 }
 .playlistContainer img {
@@ -113,4 +96,56 @@
   border-radius: 5px;
   box-shadow: 1px 2px 5px black;
   background-color: rgb(126, 58, 58);
+}
+.playerSong {
+  background-color: grey;
+  border: solid black;
+  display: flex;
+  width: 100vw;
+  height: 10vh;
+}
+.playerSongImg {
+  height: 90%;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  margin: 5px;
+  border-radius: 5px;
+}
+.controller {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  width: 5%;
+  height: 40px;
+  fill: white;
+  filter: drop-shadow(0 0 0.9rem black);
+}
+.button-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  border-radius: 50%;
+  padding: 3px;
+  width: 55px;
+  height: 55px;
+  background-color: black;
+  fill: white;
+}
+#barra{
+  position:relative;
+  height:5px;
+  width:800px;
+  border:solid 1px #ccc;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+#progreso{
+  position:absolute;
+  height:100%;
+  width: 0%;
+  background:#0F0;
 }

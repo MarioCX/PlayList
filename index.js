@@ -2501,52 +2501,68 @@ let playlist = {
   uri: "spotify:playlist:5HbNHADuYvl55kePbLEXmy",
 };
 
-playlist.tracks.items.pop();
-console.log(playlist.tracks.items);
-
 const playlistContainer = document.getElementById("playlistContainer");
+
 let songCount = 0;
 
-playlist.tracks.items.forEach((track, index) => {
-  songCount++;
+function mostrarCanciones() {
+  // window.location.reload();
 
-  // Crea elementos HTML para cada propiedad de la canción
-  const divCancion = document.createElement("tr");
-  const imagenCancion = document.createElement("img");
-  const nombreCancion = document.createElement("td");
-  const albumCancion = document.createElement("td");
-  const autorCancion = document.createElement("td");
-  const duracionCancion = document.createElement("td");
-  const buttonDelete = document.createElement("button");
-  const playlistTitle = document.getElementById("playlistTitle");
-  const playlistImage = document.getElementById("playlistImage");
-  const ownerPlaylist = document.getElementById("ownerPlaylist");
-  const lengthSongs = document.getElementById("lengthSongs");
+  playlist.tracks.items.forEach((track) => {
+    songCount++;
 
-  imagenCancion.src = track.track.album.images[0].url;
-  nombreCancion.textContent = "Nombre: " + track.track.name;
-  albumCancion.textContent = "Álbum: " + track.track.album.name;
-  autorCancion.textContent = "Artista: " + track.track.artists[0].name;
-  const duracionMinutos = Math.floor(track.track.duration_ms / 60000);
-  const duracionSegundos = Math.floor((track.track.duration_ms % 60000) / 1000);
-  const duracionFormateada =
-    duracionMinutos + ":" + duracionSegundos.toString().padStart(2, "0");
-  duracionCancion.textContent = "Duración: " + duracionFormateada;
-  buttonDelete.textContent = "Eliminar canción: " + songCount;
+    // Crea elementos HTML para cada propiedad de la canción
+    const divCancion = document.createElement("tr");
+    const imagenCancion = document.createElement("img");
+    const nombreCancion = document.createElement("td");
+    const albumCancion = document.createElement("td");
+    const autorCancion = document.createElement("td");
+    const duracionCancion = document.createElement("td");
+    const buttonDelete = document.createElement("button");
+    const playlistTitle = document.getElementById("playlistTitle");
+    const playlistImage = document.getElementById("playlistImage");
+    const ownerPlaylist = document.getElementById("ownerPlaylist");
+    const lengthSongs = document.getElementById("lengthSongs");
 
-  playlistTitle.textContent = "Playlist:  " + playlist.name;
-  playlistImage.src = playlist.images[0].url;
-  ownerPlaylist.textContent = "Owner: " + playlist.owner.display_name;
-  lengthSongs.textContent = "Número de canciones: " + playlist.tracks.total;
+    imagenCancion.src = track.track.album.images[0].url;
+    nombreCancion.textContent = "Nombre: " + track.track.name;
+    albumCancion.textContent = "Álbum: " + track.track.album.name;
+    autorCancion.textContent = "Artista: " + track.track.artists[0].name;
+    const duracionMinutos = Math.floor(track.track.duration_ms / 60000);
+    const duracionSegundos = Math.floor(
+      (track.track.duration_ms % 60000) / 1000
+    );
+    const duracionFormateada =
+      duracionMinutos + ":" + duracionSegundos.toString().padStart(2, "0");
+    duracionCancion.textContent = "Duración: " + duracionFormateada;
+    buttonDelete.textContent = "Eliminar canción: " + songCount;
+    buttonDelete.setAttribute("onClick", "deleteSong()");
 
-  // Agrega los elementos al div de la canción
-  divCancion.appendChild(imagenCancion);
-  divCancion.appendChild(nombreCancion);
-  divCancion.appendChild(albumCancion);
-  divCancion.appendChild(autorCancion);
-  divCancion.appendChild(duracionCancion);
-  divCancion.appendChild(buttonDelete);
+    playlistTitle.textContent = "Playlist:  " + playlist.name;
+    playlistImage.src = playlist.images[0].url;
+    ownerPlaylist.textContent = "Owner: " + playlist.owner.display_name;
+    lengthSongs.textContent = "Número de canciones: " + playlist.tracks.total;
 
-  // Agrega el div de la canción al contenedor principal
-  playlistContainer.appendChild(divCancion);
-});
+    // Agrega los elementos al div de la canción
+    divCancion.appendChild(imagenCancion);
+    divCancion.appendChild(nombreCancion);
+    divCancion.appendChild(albumCancion);
+    divCancion.appendChild(autorCancion);
+    divCancion.appendChild(duracionCancion);
+    divCancion.appendChild(buttonDelete);
+
+    // Agrega el div de la canción al contenedor principal
+    playlistContainer.appendChild(divCancion);
+  });
+}
+
+function refresh() {
+  const contenedor = document.getElementById("divCancion");
+  contenedor.innerHTML = "";
+}
+
+function deleteSong() {
+  playlist.tracks.items.pop();
+  console.log(playlist.tracks.items);
+  console.log("Funciono");
+}
