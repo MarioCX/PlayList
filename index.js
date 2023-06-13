@@ -2501,28 +2501,28 @@ let playlist = {
   uri: "spotify:playlist:5HbNHADuYvl55kePbLEXmy",
 };
 
-const playlistContainer = document.getElementById("playlistContainer");
+// const playlistContainer = document.getElementById("playlistContainer");
 
 let songCount = 0;
 
 function mostrarCanciones() {
-  // window.location.reload();
-
+  let table = document.createElement("table");
+  table.id = "playlistContainer";
   playlist.tracks.items.forEach((track) => {
     songCount++;
 
     // Crea elementos HTML para cada propiedad de la canción
-    const divCancion = document.createElement("tr");
-    const imagenCancion = document.createElement("img");
-    const nombreCancion = document.createElement("td");
-    const albumCancion = document.createElement("td");
-    const autorCancion = document.createElement("td");
-    const duracionCancion = document.createElement("td");
-    const buttonDelete = document.createElement("button");
-    const playlistTitle = document.getElementById("playlistTitle");
-    const playlistImage = document.getElementById("playlistImage");
-    const ownerPlaylist = document.getElementById("ownerPlaylist");
-    const lengthSongs = document.getElementById("lengthSongs");
+    let divCancion = document.createElement("tr");
+    let imagenCancion = document.createElement("img");
+    let nombreCancion = document.createElement("td");
+    let albumCancion = document.createElement("td");
+    let autorCancion = document.createElement("td");
+    let duracionCancion = document.createElement("td");
+    let buttonDelete = document.createElement("button");
+    let playlistTitle = document.getElementById("playlistTitle");
+    let playlistImage = document.getElementById("playlistImage");
+    let ownerPlaylist = document.getElementById("ownerPlaylist");
+    let lengthSongs = document.getElementById("lengthSongs");
 
     imagenCancion.src = track.track.album.images[0].url;
     nombreCancion.textContent = "Nombre: " + track.track.name;
@@ -2536,7 +2536,7 @@ function mostrarCanciones() {
       duracionMinutos + ":" + duracionSegundos.toString().padStart(2, "0");
     duracionCancion.textContent = "Duración: " + duracionFormateada;
     buttonDelete.textContent = "Eliminar canción: " + songCount;
-    buttonDelete.setAttribute("onClick", "deleteSong()");
+    buttonDelete.setAttribute("onClick", "deleteSong((songCount - 1))");
 
     playlistTitle.textContent = "Playlist:  " + playlist.name;
     playlistImage.src = playlist.images[0].url;
@@ -2552,17 +2552,23 @@ function mostrarCanciones() {
     divCancion.appendChild(buttonDelete);
 
     // Agrega el div de la canción al contenedor principal
-    playlistContainer.appendChild(divCancion);
+    table.appendChild(divCancion);
+    document.getElementById("containerPlaylist").appendChild(table)
   });
+  
 }
 
 function refresh() {
-  const contenedor = document.getElementById("divCancion");
-  contenedor.innerHTML = "";
+  const contenedor = document.getElementById("playlistContainer");
+  contenedor.remove();
+  console.log("Funciono 2")
 }
 
 function deleteSong() {
-  playlist.tracks.items.pop();
+  const nuevaPlaylist = playlist.tracks.items.pop();
+  console.log(nuevaPlaylist);
   console.log(playlist.tracks.items);
   console.log("Funciono");
+  refresh();
+  mostrarCanciones();
 }

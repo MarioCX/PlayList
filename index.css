@@ -31,7 +31,6 @@
   background-color: transparent;
   border-radius: 5px;
   margin: 10px 40%;
-
 }
 .albumImg {
   margin: 10px 20%;
@@ -44,7 +43,6 @@
   margin: 10px 20%;
   text-align: center;
 }
-
 
 .playlistContainer {
   width: 60vw;
@@ -135,17 +133,17 @@
   background-color: black;
   fill: white;
 }
-#barra{
-  position:relative;
-  height:5px;
-  width:800px;
-  border:solid 1px #ccc;
+#barra {
+  position: relative;
+  height: 5px;
+  width: 800px;
+  border: solid 1px #ccc;
   border-radius: 10px;
   margin-right: 10px;
 }
-#progreso{
-  position:absolute;
-  height:100%;
+#progreso {
+  position: absolute;
+  height: 100%;
   width: 0%;
-  background:#0F0;
+  background: #0f0;
 }
